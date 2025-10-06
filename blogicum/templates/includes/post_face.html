@@ -1,0 +1,11 @@
+<div class="card-body">
+  <ul>
+    <li><h5 class="card-title">Место: {{ post.location }}</h5></li>
+    <li><h5 class="card-title">Дата: {{ post.date }}</h5></li>
+    <li>
+      <h5>
+        Категория <a href="{% url 'blog:category_posts' post.category %}"> {{ post.category}} </a>
+      </h5>
+    </li>
+  </ul>
+</div>
