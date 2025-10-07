@@ -152,3 +152,12 @@ media/
 build_tests/
 yap_testing
 html/img/img/
+
+# Неиспользуемые файлы Django
+blogicum/blog/admin.py
+models.py
+tests.py
+
+
+#html Вёрстка
+html/
