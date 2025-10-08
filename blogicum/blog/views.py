@@ -1,6 +1,6 @@
 from django.shortcuts import render
+from django.http import Http404, HttpResponse
 
-# Create your views here.
 
 posts = [
     {
@@ -45,20 +45,27 @@ posts = [
     },
 ]
 
+id_of_posts = {post['id']: post for post in posts}
+
 
 def index(request):
+    """Passing the entire list of posts to the context."""
     template = 'blog/index.html'
     context = {'post_list': posts}
     return render(request, template, context)
 
 
-def post_detail(request, id):
+def post_detail(request, id: int) -> HttpResponse:
+    """Passing the entire list of posts to the context."""
     template = 'blog/detail.html'
-    context = {'post': posts[id]}
+    context = {'post': id_of_posts[id]}
+    if id not in id_of_posts:
+        raise Http404(f'Page {id} not found (404)')
     return render(request, template, context)
 
 
 def category_posts(request, category_slug):
+    """Passing the entire list of posts to the context."""
     template = 'blog/category.html'
-    context = {'posts': posts, 'category_slug': category_slug}
+    context = {'category_slug': category_slug}
     return render(request, template, context)
