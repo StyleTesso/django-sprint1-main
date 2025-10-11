@@ -58,9 +58,9 @@ def index(request):
 def post_detail(request, id: int) -> HttpResponse:
     """Passing the entire list of posts to the context."""
     template = 'blog/detail.html'
-    context = {'post': id_of_posts[id]}
     if id not in id_of_posts:
         raise Http404(f'Page {id} not found (404)')
+    context = {'post': id_of_posts[id]}
     return render(request, template, context)
 
 

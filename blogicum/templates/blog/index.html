@@ -1,17 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block title %}
   Лента записей
 {% endblock %}
 {% block content %}
-  <h1 class="mb-5">Лента записей</h1>
-    {% for post in post_list reversed %}
+  <h1>Лента записей</h1>
+    {% for post in post_list|dictsortreversed:'id' %}
       <hr>
-        <article class="mb-5"> 
-          {% include "includes/post_face.html" %}
-          {% if request.resolver_match.view_name == 'blog:index' %}
-            <p class="card-text">{{ post.text|truncatewords:10 }}</p>
-          {% endif %}  
-          <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-        </article>
+        {% include 'includes/post_face.html' %}
+        <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
     {% endfor %}
 {% endblock %}
